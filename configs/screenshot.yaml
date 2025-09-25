@@ -1,0 +1,8 @@
+# 有关失败用例截图的参数配置
+
+
+path:
+  # 保存目录
+  dir: reports
+  # 保存文件夹
+  file: screenshots

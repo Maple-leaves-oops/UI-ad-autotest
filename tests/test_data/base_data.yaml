@@ -1,0 +1,88 @@
+# 基础数据层 base_data.yaml
+
+resource_mapping:  # 资源映射表：明确不同场景+目标对应的游戏/账户键名
+  - scene: "直播"
+    purpose: "*"  # "*" 表示匹配所有推广目标
+    app_type: "*"
+    games_key: "live_games"       # 对应 games 中的键名
+    accounts_key: "live_accounts" # 对应 accounts 中的键名
+
+  - scene: "短视频+图文"
+    purpose: "小程序"
+    app_type: "*"
+    games_key: "applet_games"
+    accounts_key: "applet_accounts"
+
+  - scene: "短视频+图文"
+    purpose: "*"  # 匹配除小程序外的所有推广目标
+    app_type: "苹果应用"
+    games_key: "sv_games_ios"
+    accounts_key: "sv_accounts_ios"
+
+  - scene: "短视频+图文"
+    purpose: "*"
+    app_type: "安卓应用"
+    games_key: "sv_games_android"
+    accounts_key: "sv_accounts_android"
+#1.投放游戏与账户
+games:
+  sv_games_ios: ["战火勋章"]  # 短视频+图文场景使用的游戏(ios)
+  sv_games_android: ["剑与远征：启程"]  # 短视频+图文场景使用的游戏(android)
+  live_games: ["战火勋章"]  # 直播场景使用的游戏
+  applet_games: ["消消美食街"] #小程序场景使用的游戏
+accounts:
+  sv_accounts_ios: ["1752640551709704"]  # 短视频+图文场景使用的账户(ios)
+  sv_accounts_android: ["1800990792207424"]  # 短视频+图文场景使用的账户(android)
+  live_accounts: ["1752640551709704"]  # 直播场景使用的账户
+  applet_accounts: ["1808701433752592"] # 小程序场景使用的账户
+
+# 2.营销目标与场景
+purposes:
+  - name: "应用推广"
+    sub_types: ["应用下载", "预约下载"]
+    # 新增：直接存储（目标+子目标）的绑定组合
+    purpose_sub_combos: [["应用推广", "应用下载"], ["应用推广", "预约下载"]]
+  - name: "小程序"
+    sub_types: ["微信小游戏", "微信小程序", "字节小游戏"]
+    purpose_sub_combos: [["小程序", "微信小游戏"], ["小程序", "微信小程序"], ["小程序", "字节小游戏"]]
+
+#3.投放内容与目标
+contents:
+  app_types: ['苹果应用','安卓应用']
+
+#4.投放版位
+placements:
+  positions: ["首选媒体", "通投智选"]
+  media_options: ["今日头条", "西瓜视频", "抖音", "番茄小说", "穿山甲"]
+
+#5.用户定向
+targetings:
+  filter_types: ["不限", "广告", "推广项目", "广告账户", "公司账户","APP"]
+  filter_days: ["当天", "7天", "1个月", "3个月", "6个月","12个月"]
+
+#6.广告创意/广告设置
+materials:
+  douyin_count: [""]
+
+#7.搜索快投
+search_express:
+  bid_factors: [1.0]
+  expansion_options: ["关闭", "开启"]
+
+#8.排期与预算
+budget:
+  time: ["从今天起长期投放", "设置开始和结束日期"]
+  time_periods: ["不限", "指定时间段"]
+#  bidding_strategies: ["稳定成本", "最优成本"]
+  bidding_strategies: ["最大转化"]
+  budget_types: ["不限", "日预算"]
+  daily_budgets: [300]
+  ad_budgets: [300]
+  ad_bids: [0.1]
+
+#9.项目生成方式与标签
+generation:
+  generation_types: ["按受众", "按受众、创意"]
+  campaign_types: ["拉新", "回流", "混投"]
+  campaign_status: ["关闭", "开启"]
+  ad_status: ["关闭", "开启"]
