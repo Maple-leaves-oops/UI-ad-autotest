@@ -1,0 +1,187 @@
+#营销场景数据scenarios.yaml
+# 短视频+图文场景
+short_video_scenarios:
+  - name: "短视频+图文_通投手动_原生关闭"
+    scene: "短视频+图文"
+    ad_type: "通投广告"
+    delivery_mode: "手动投放"
+    extra_fields:
+      native_ad: "关闭"
+
+  - name: "短视频+图文_通投手动_原生开启"
+    scene: "短视频+图文"
+    ad_type: "通投广告"
+    delivery_mode: "手动投放"
+    extra_fields:
+      native_ad: "开启"
+
+#指定使用抖音素材
+  - name: "短视频+图文_通投手动_原生开启_dy素材"
+    scene: "短视频+图文"
+    ad_type: "通投广告"
+    delivery_mode: "手动投放"
+    extra_fields:
+      native_ad: "开启"
+      dy_material: "true"
+
+  - name: "短视频+图文_通投自动_原生关闭"
+    scene: "短视频+图文"
+    ad_type: "通投广告"
+    delivery_mode: "自动投放"
+    extra_fields:
+      native_ad: "关闭"
+
+  - name: "短视频+图文_通投自动_原生开启"
+    scene: "短视频+图文"
+    ad_type: "通投广告"
+    delivery_mode: "自动投放"
+    extra_fields:
+      native_ad: "开启"
+
+ #指定使用抖音素材
+  - name: "短视频+图文_通投自动_原生开启_dy素材"
+    scene: "短视频+图文"
+    ad_type: "通投广告"
+    delivery_mode: "自动投放"
+    extra_fields:
+      native_ad: "开启"
+      dy_material: "true"
+
+  - name: "短视频+图文_搜索常规_原生关闭"
+    scene: "短视频+图文"
+    ad_type: "搜索广告"
+    delivery_mode: "常规投放"
+    extra_fields:
+      native_ad: "关闭"
+
+  - name: "短视频+图文_搜索常规_原生开启"
+    scene: "短视频+图文"
+    ad_type: "搜索广告"
+    delivery_mode: "常规投放"
+    extra_fields:
+      native_ad: "开启"
+
+ #指定使用抖音素材
+  - name: "短视频+图文_搜索常规_原生开启_dy素材"
+    scene: "短视频+图文"
+    ad_type: "搜索广告"
+    delivery_mode: "常规投放"
+    extra_fields:
+      native_ad: "开启"
+      dy_material: "true"
+
+  - name: "短视频+图文_搜索极速_原生关闭"
+    scene: "短视频+图文"
+    ad_type: "搜索广告"
+    delivery_mode: "极速智投"
+    extra_fields:
+      native_ad: "关闭"
+
+  - name: "短视频+图文_搜索极速_原生开启"
+    scene: "短视频+图文"
+    ad_type: "搜索广告"
+    delivery_mode: "极速智投"
+    extra_fields:
+      native_ad: "开启"
+
+ #指定使用抖音素材
+  - name: "短视频+图文_搜索极速_原生开启_dy素材"
+    scene: "短视频+图文"
+    ad_type: "搜索广告"
+    delivery_mode: "极速智投"
+    extra_fields:
+      native_ad: "开启"
+      dy_material: "true"
+
+  # 新增：带星广联投任务的场景【投放模式不限：手动/自动】
+  - name: "短视频+图文_通投广告_星广联投"
+    scene: "短视频+图文"
+    ad_type: "通投广告"
+    delivery_mode: "手动投放"
+    extra_fields:
+      star_task: "true"
+
+  - name: "短视频+图文_通投广告_星广联投"
+    scene: "短视频+图文"
+    ad_type: "通投广告"
+    delivery_mode: "自动投放"
+    extra_fields:
+      star_task: "true"
+
+# 直播场景
+live_scenarios:
+  - name: "直播_通投手动_直播素材"
+    scene: "直播"
+    ad_type: "通投广告"
+    delivery_mode: "手动投放"
+    extra_fields:
+      material_type: "直播素材"
+
+
+  - name: "直播_通投手动_广告素材"
+    scene: "直播"
+    ad_type: "通投广告"
+    delivery_mode: "手动投放"
+    extra_fields:
+      material_type: "广告素材"
+
+#指定使用抖音素材
+  # todo 填写内容不完整
+  - name: "直播_通投手动_广告素材_dy素材"
+    scene: "直播"
+    ad_type: "通投广告"
+    delivery_mode: "手动投放"
+    extra_fields:
+      material_type: "广告素材"
+      dy_material: "true"
+
+#todo 填写内容不完整
+  - name: "直播_通投自动_直播素材"
+    scene: "直播"
+    ad_type: "通投广告"
+    delivery_mode: "自动投放"
+    extra_fields:
+      material_type: "直播素材"
+
+#todo 填写内容不完整
+  - name: "直播_通投自动_广告素材"
+    scene: "直播"
+    ad_type: "通投广告"
+    delivery_mode: "自动投放"
+    extra_fields:
+      material_type: "广告素材"
+
+#指定使用抖音素材
+  #todo 填写内容不完整
+  - name: "直播_通投自动_广告素材_dy素材"
+    scene: "直播"
+    ad_type: "通投广告"
+    delivery_mode: "自动投放"
+    extra_fields:
+      material_type: "广告素材"
+      dy_material: "true"
+
+  - name: "直播_搜索常规_直播素材"
+    scene: "直播"
+    ad_type: "搜索广告"
+    delivery_mode: "常规投放"
+    extra_fields:
+      material_type: "直播素材"
+
+#todo  音乐库、文案库、外面蓝海关键词   填写内容不完整
+  - name: "直播_搜索常规_广告素材"
+    scene: "直播"
+    ad_type: "搜索广告"
+    delivery_mode: "常规投放"
+    extra_fields:
+      material_type: "广告素材"
+
+#todo  音乐库、文案库、外面蓝海关键词   搜索测试无数据
+  #指定使用抖音素材
+  - name: "直播_搜索常规_广告素材_dy素材"
+    scene: "直播"
+    ad_type: "搜索广告"
+    delivery_mode: "常规投放"
+    extra_fields:
+      material_type: "广告素材"
+      dy_material: "true"

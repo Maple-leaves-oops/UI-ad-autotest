@@ -1,0 +1,21 @@
+# 有关浏览器的参数配置
+
+
+browser:
+  # 浏览器启动参数
+  launch_args:
+    # 是否无头模式运行（false = 有界面，true = 无界面，适合CI）
+    headless: false
+    # 指定浏览器内核（chromium / chrome / msedge）  chromium:使用playwright内置浏览器进行操作 chrome:使用系统安装的浏览器进行操作
+    channel: chrome
+    # 操作放慢速度（单位：毫秒），方便观察执行过程
+    slow_mo: 0
+    # 保证窗口全屏
+    args: ["--start-maximized"]
+
+  # 浏览器上下文参数
+  context_args:
+    # 保证窗口全屏
+    no_viewport: True
+    # 忽略 HTTPS 证书错误（适合测试环境自签证书）
+    ignore_https_errors: true
