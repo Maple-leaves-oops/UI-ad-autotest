@@ -9,7 +9,7 @@ browser:
     # 指定浏览器内核（chromium / chrome / msedge）  chromium:使用playwright内置浏览器进行操作 chrome:使用系统安装的浏览器进行操作
     channel: chrome
     # 操作放慢速度（单位：毫秒），方便观察执行过程
-    slow_mo: 0
+    slow_mo: 200
     # 保证窗口全屏
     args: ["--start-maximized"]
 

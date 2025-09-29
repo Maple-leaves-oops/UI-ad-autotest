@@ -3,7 +3,6 @@ REM ================================
 REM 获取标准时间戳 YYYY_MM_DD_HH_MM_SS
 REM ================================
 for /f %%i in ('powershell -Command "Get-Date -Format yyyy_MM_dd_HH_mm_ss"') do set TIMESTAMP=%%i
-echo 当前时间戳: %TIMESTAMP%
 
 REM ================================
 REM 清理 allure-results 目录

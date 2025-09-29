@@ -23,9 +23,7 @@ class TestCampaignCreate:
     @pytest.mark.parametrize(
         "scenario",
         all_scenarios,
-        ids=[s["name"] for s in
-             scenarios["short_video_scenarios"] +
-             scenarios["live_scenarios"]]
+        ids=lambda s: s["name"]
     )
     def test_create_campaign(self, campaign_page_toutiao, scenario):
         """创建广告,只取每个场景的第一个组合"""

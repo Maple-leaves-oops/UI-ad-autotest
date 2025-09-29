@@ -33,7 +33,7 @@ class CampaignPageToutiaoLocators:
     CUSTOM_KEYWORD_ADD = "//span[normalize-space(.)='添加']"
     LANHAI_BAG = "//span[contains(text(), '未选择蓝海流量包')]//..//following-sibling::div//div[normalize-space(text())='选择']"
     LANHAI_BAG_TITLE = "//span[text()='蓝海流量包']"
-    LANHAI_BAG_ROW_RADIO = "//table[contains(@class,'ep-table__body')]//tr[contains(.,'{game}')]//td[1]//span/span"
+    LANHAI_BAG_ROW_RADIO = "//tr[td[normalize-space()='{game}']]//span[@class='ep-radio__inner']"
 
     # 1.2 选择投放账户
     ACCOUNT_ADD = "//button[normalize-space(.)='添加账户']"
@@ -46,7 +46,7 @@ class CampaignPageToutiaoLocators:
     STAR_TASK_SELECTOR = ("//div[span[text()='未选择星广联投任务']]//..//..//div[span[contains(text(),'未选择星广联投任务')]]"
                           "/following-sibling::div/div[contains(text(),'选择')]")
     STAR_TASK_INPUT = "//input[@placeholder='请输入任务名称']"
-    STAR_TASK_CHECKBOX = "//tr[contains(.,'战火勋章25年6月星广联投素材-常规发布赛道-芦鸣')]/td[1]//span[@class='ep-radio__inner']"
+    STAR_TASK_CHECKBOX = "//tr[contains(.,'战火勋章')]/td[1]//span[@class='ep-radio__inner']"
     APP_TYPE_SELECTED = "//label[span[text()='{app_type}']]"
     APP_SELECTOR_BOX_NEW = ("//*[@id='deliveryGoal']//div[contains(@class,'ep-select__selection')]/div["
                             "contains(@class,'ep-select__selected-item') and contains(@class,'ep-select__placeholder')]"

@@ -331,9 +331,21 @@ class CampaignPageToutiao(BasePage):
                 pytest.fail(f"蓝海流量包抽屉等待失败：发生未知错误 {e}")
 
             try:
+                # 填写输入框并回车
+                input_locator = self.page.locator(
+                    "//div[@class='search-input']//input[@placeholder='请输入']"
+                )
+                input_locator.fill(game)
+                input_locator.press("Enter")
+            except PlaywrightTimeoutError:
+                pytest.fail("蓝海流量包搜索输入框操作超时：未找到或无法操作输入框")
+            except Exception as e:
+                pytest.fail(f"蓝海流量包搜索输入框操作失败：发生未知错误 {e}")
+
+            try:
                 self.page.locator(
                     CampaignPageToutiaoLocators.LANHAI_BAG_ROW_RADIO.format(game=game)
-                ).click(timeout=5000)
+                ).first.click(timeout=5000)
             except PlaywrightTimeoutError:
                 pytest.fail(f"蓝海流量包选择失败：未找到游戏『{game}』的单选框")
             except Exception as e:
@@ -424,7 +436,7 @@ class CampaignPageToutiao(BasePage):
             try:
                 self.page.locator(
                     CampaignPageToutiaoLocators.STAR_TASK_INPUT
-                ).fill("战火勋章25年6月星广联投素材-常规发布赛道-芦鸣", timeout=5000)
+                ).fill("战火勋章", timeout=5000)
             except PlaywrightTimeoutError:
                 pytest.fail("星广联投任务输入失败：未找到输入框或无法输入任务名称")
             except Exception as e:
@@ -443,7 +455,8 @@ class CampaignPageToutiao(BasePage):
             # ep-radio__original → 真实的 input，隐藏，不可点
             # ep-radio__inner → UI 展示层，可见，可点（推荐）
             try:
-                self.page.locator(CampaignPageToutiaoLocators.STAR_TASK_CHECKBOX).click(timeout=10000)
+                # 星广联投任务选择匹配战火勋章的第一个
+                self.page.locator(CampaignPageToutiaoLocators.STAR_TASK_CHECKBOX).first.click(timeout=10000)
             except PlaywrightTimeoutError:
                 pytest.fail(f"星广联投任务选择失败：未找到或无法点击{CampaignPageToutiaoLocators.STAR_TASK_CHECKBOX}复选框")
             except Exception as e:

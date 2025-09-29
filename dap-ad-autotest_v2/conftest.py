@@ -124,11 +124,73 @@ def authenticated_context(browser: Browser, browser_context_args: dict) -> Brows
     """
     context = browser.new_context(**browser_context_args)
     context.tracing.start(screenshots=True, snapshots=True, sources=True)
+
     yield context
-    date_str = datetime.now().strftime("%Y_%m_%d")
-    trace_file = f"trace_{date_str}.zip"
-    context.tracing.stop(path=trace_file)
+
+    trace_dir = Path("trace")
+    trace_dir.mkdir(parents=True, exist_ok=True)
+
+    # 时间戳（到秒）
+    date_str = datetime.now().strftime("%Y_%m_%d_%H_%M_%S")
+    trace_file = trace_dir / f"trace_{date_str}.zip"
+
+    # 停止 tracing 并保存
+    context.tracing.stop(path=str(trace_file))
     context.close()
+
+
+# ======================================
+# function 级别 HTTP 错误收集
+# ======================================
+@pytest.fixture(autouse=True)
+def capture_http_errors(authenticated_context: BrowserContext, request):
+    """
+    每个测试用例独立捕获 HTTP 错误状态码
+    """
+    error_messages = []
+
+    # 日志目录
+    log_dir = Path("errors")
+    log_dir.mkdir(parents=True, exist_ok=True)
+    date_str = datetime.now().strftime("%Y_%m_%d")
+    log_file = log_dir / f"error_responses_{date_str}.log"
+
+    # 事件监听函数
+    def handle_response(response):
+        if response.status >= 400:
+            timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+            log_line = (
+                f"[{timestamp}] [错误捕获] {response.status} {response.url}\n"
+            )
+
+            # 控制台输出
+            print(log_line.strip())
+
+            # 写入日志
+            with log_file.open("a", encoding="utf-8") as f:
+                f.write(log_line)
+
+            # 收集到本用例列表
+            error_messages.append(log_line.strip())
+
+    # 给 session 级 context 注册监听
+    authenticated_context.on("response", handle_response)
+
+    # 测试用例执行
+    yield
+
+    # 测试结束时 fail（挂到本用例）
+    if error_messages:
+        # Allure attach
+        allure.attach(
+            "\n".join(error_messages),
+            name="HTTP 错误状态码",
+            attachment_type=allure.attachment_type.TEXT
+        )
+
+        # 让用例失败
+        pytest.fail("HTTP 错误发生在本用例:\n" + "\n".join(error_messages), pytrace=False)
 
 
 @pytest.fixture(scope="session")
@@ -284,3 +346,12 @@ def campaign_page_toutiao(home_page):
 #     outcome = yield
 #     rep = outcome.get_result()
 #     setattr(item, f"rep_{rep.when}", rep)
+
+
+# def pytest_collection_modifyitems(items):
+#     """
+#     测试用例收集完成时，将收集到的item的name和nodeid的中文显示在控制台上
+#     """
+#     for item in items:
+#         item.name = item.name.encode("utf-8").decode("unicode_escape")
+#         item._nodeid = item.nodeid.encode("utf-8").decode("unicode_escape")
